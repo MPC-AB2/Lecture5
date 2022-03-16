@@ -20,17 +20,38 @@
 1. Download the zip file with Elastix software version 5.0.1 for Windows x64 from [here](https://github.com/SuperElastix/elastix/releases).
 2. Extract all files from zip file into the created subfolder **elastix** in main folder **Lecture5**.
 3. Download the data in a zip file from [here](https://www.vut.cz/www_base/vutdisk.php?i=286020a49b). Extract the content of the zip folder into **Lecture5** folder. It contains three mat files (*dataX.mat*), each containing *fixed* (reference) and *moving* image. In the first task we will be working with *data1.mat* only.
-4. Elastix needs the input in the *mhd/raw* files.
-7. Compute a depth maps from obtained disparity maps and available calibration parameters.
-8. Design an automatic algorithm for depth maps computation (depth will be in mm). Try to design also a pipeline for post-processing of disparity (depth) maps that will reflect in gaining similar results as the ground truth maps. 
-9. Use the provided MATLAB function for evaluation of the results and submit the output to the provided Excel table. The function *evaluateReconstruction.p* called as:
-`[MAE,percantageMissing,details] = evaluateReconstruction(depthMaps)`,
+4. Elastix needs the input in the *mhd/raw* files. Create fuction *mat2raw.m* to save variable to *mhd/raw* file:
+   * the inputs will be 2D matrix, save-path and file name,
+   * function writes the variable into *.raw* and *.mhd* format (no output).
+5. Create an alternative function *mat2rawMASK.m* to write a binary image; the same inputs/outputs as before.
+6. Create function *raw2mat.m* to read *mhd/raw* file:
+   * the input will be a path to the *.mhd* file to be loaded,
+   * the output argument will be a variable.
+7. Create a script for registration:
+   * load example images from *data1.mat*,
+   * write images from *fixed* and *moving* variables into *.raw* and *.mhd* files by *mat2raw.m* function,
+   * run image registration using Elastix by command line execution in Matlab,
+   * read registered image from *mhd/raw* file by *raw2mat.m* function.
+9. Perform geometrical transformation of the image via Transformix using command line execution in Matlab.
+10. Change the transformix command to save also the deformation field.
+11. Perform rigid and affine registration of images from data1.mat and set the parametric files properly to get visually optimal results.
+
+### Task 2 - Using Binary masks (AFFINE geom. transf.)
+1. Create a copy of your registration script from Task 1.
+2. Try to use it to register the images from *data2.mat* file.
+3. Modify your script to use a binary mask for elimination zero pixels of background.
+4. Perform registration of images from *data2.mat* and set the parametric files properly to get visually optimal results.
+
+### Task 3 - Design of registration approaches leading to correction of breathing movement - Challenge
+1. Create a copy of your registration script from Task 2.
+2. Load *data3.mat* file, which contains single pairs of 2D lung CT images.
+3. Design the registration approach which will correct a breathing movement in inhale and exhale phase (The pipeline can consist several registrations with different geometrical transformations and/or parameters, including pyramidal approach.).
+12. Use the provided MATLAB function for the evaluation of the results. The function *Eval_Lung2D.p* called as:
+`[MAE,percantageMissing,details] = Eval_Lung2D(registered)`,
 has the following inputs and outputs:
   * depthMaps (cell array 1xNumber of scenes, where each cell contains matrix sized as image containing depth values in mm, missing pixels should have value equal to zero); the order of scenes has to be preserved,
   * MAE (mean absolute error for whole dataset),
   * percentageMissing (mean percent of pixels without estimated depth)
   * details for individual scenes.
-6. Store your implemented algorithm as a form of function `[depthMaps] = TeamName( path )`; for *depthMaps* see above; *path* is the path to the *Data* folder with subfolders of individual scenes. Make sure the function will open individual subfolders, compute the depth map and store it in the cell array with the order of scene preserved. The function will be used for evaluation of universality of your solution using another input scenes. **Push** your program implementations into GitHub repository **Lecture4** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
-7. Create a reconstructed 3D surface image of your best-estimated depth map and use representation by a point cloud (due to the high resolution of original images use subsampled
-space only). Check the quality of the reconstruction. You can rotate the 3D plot and make sure that the reconstructed objects are clearly visible.
-8. Submit *.tiff* image of the 3d surface and the best-obtained result of your method evaluated on the competition dataset using the evaluation function (i.e. submit the calculated evaluation values) into a shared [Excel table](https://docs.google.com/spreadsheets/d/1_cAuTqY7bAdAE_-ORHeWioJ7d9sKWocp/edit?usp=sharing&ouid=105272487043795807825&rtpof=true&sd=true). The evaluation of results from each team will be presented at the end of the lecture.
+6. **Push** your program implementations into GitHub repository **Lecture5** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
+8. Submit *.tiff* image of the best-obtained result of your registration approach and fill in the corresponding results into a shared [Excel table](https://docs.google.com/spreadsheets/d/1ZLWh8O1HYGq7U62asCGflhpPCPrQu6ll/edit?usp=sharing&ouid=112211468254352441667&rtpof=true&sd=true). The evaluation of results from each team will be presented at the end of the lecture.
