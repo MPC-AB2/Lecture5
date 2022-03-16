@@ -36,7 +36,7 @@
 10. Change the transformix command to save also the deformation field.
 11. Perform rigid and affine registration of images from data1.mat and set the parametric files properly to get visually optimal results.
 
-### Task 2 - Using Binary masks (AFFINE geom. transf.)
+### Task 2 - Using binary masks in (AFFINE geom. transf.)
 1. Create a copy of your registration script from Task 1.
 2. Try to use it to register the images from *data2.mat* file.
 3. Modify your script to use a binary mask for elimination zero pixels of background.
@@ -47,11 +47,10 @@
 2. Load *data3.mat* file, which contains single pairs of 2D lung CT images.
 3. Design the registration approach which will correct a breathing movement in inhale and exhale phase (The pipeline can consist several registrations with different geometrical transformations and/or parameters, including pyramidal approach.).
 12. Use the provided MATLAB function for the evaluation of the results. The function *Eval_Lung2D.p* called as:
-`[MAE,percantageMissing,details] = Eval_Lung2D(registered)`,
+`[evalLung, evalOther] = Eval_Lung2D(registered)`,
 has the following inputs and outputs:
-  * depthMaps (cell array 1xNumber of scenes, where each cell contains matrix sized as image containing depth values in mm, missing pixels should have value equal to zero); the order of scenes has to be preserved,
-  * MAE (mean absolute error for whole dataset),
-  * percentageMissing (mean percent of pixels without estimated depth)
-  * details for individual scenes.
+  * registered - variable of registered image (uint8, same size as moving image)
+  * evalLung - efficiency of registration of lung tissue (in range <-100, +100>, higher is better),
+  * evalOther - efficiency of registration of other tissues (in range <-100, +100>, higher is better).
 6. **Push** your program implementations into GitHub repository **Lecture5** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
 8. Submit *.tiff* image of the best-obtained result of your registration approach and fill in the corresponding results into a shared [Excel table](https://docs.google.com/spreadsheets/d/1ZLWh8O1HYGq7U62asCGflhpPCPrQu6ll/edit?usp=sharing&ouid=112211468254352441667&rtpof=true&sd=true). The evaluation of results from each team will be presented at the end of the lecture.
