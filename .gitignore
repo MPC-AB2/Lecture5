@@ -3,5 +3,5 @@
 *.mhd
 *.raw
 *.log
-/TempFile
-/elastix
+**/TempFile
+**/elastix
