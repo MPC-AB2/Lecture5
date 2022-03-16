@@ -1,4 +1,4 @@
-# Lecture5 - IMAGE REGISTRATION
+# Lecture5 - IMAGE REGISTRATION METHODS (ELASTIX)
 
 ## Preparation
 
@@ -16,6 +16,7 @@
 
 ## Tasks to do
 
+### Task 1 - Elementary script for image registration using Elastix
 1. Download the data in a zip folder from [here](). Extract the content of the zip folder into **Lecture5** folder. It contains folder Data with a set of five folders of scenes (imX), each with two images (im0 and im1) from two cameras and calibration information (calib.txt). Stereoscopic images have been already rectified into the epipolar planes. Besides, the fip filder contains an encrypted ground truht image *GT.mat*. 
 2. Compute a disparity maps for each im0 in horizontal direction by any method.
 3. Compute a depth maps from obtained disparity maps and available calibration parameters.
