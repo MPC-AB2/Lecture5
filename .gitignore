@@ -1,0 +1,7 @@
+# Lecture5 gitignore
+*.mat
+*.mhd
+*.raw
+*.log
+\TempFile
+\elastix
