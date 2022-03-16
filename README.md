@@ -36,7 +36,7 @@
 10. Change the transformix command to save also the deformation field.
 11. Perform rigid and affine registration of images from data1.mat and set the parametric files properly to get visually optimal results.
 
-### Task 2 - Using binary masks in (AFFINE geom. transf.)
+### Task 2 - Using binary masks in Elastix
 1. Create a copy of your registration script from Task 1.
 2. Try to use it to register the images from *data2.mat* file.
 3. Modify your script to use a binary mask for elimination zero pixels of background.
