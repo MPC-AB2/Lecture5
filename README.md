@@ -17,11 +17,13 @@
 ## Tasks to do
 
 ### Task 1 - Elementary script for image registration using Elastix
-1. Download the data in a zip folder from [here](). Extract the content of the zip folder into **Lecture5** folder. It contains folder Data with a set of five folders of scenes (imX), each with two images (im0 and im1) from two cameras and calibration information (calib.txt). Stereoscopic images have been already rectified into the epipolar planes. Besides, the fip filder contains an encrypted ground truht image *GT.mat*. 
-2. Compute a disparity maps for each im0 in horizontal direction by any method.
-3. Compute a depth maps from obtained disparity maps and available calibration parameters.
-4. Design an automatic algorithm for depth maps computation (depth will be in mm). Try to design also a pipeline for post-processing of disparity (depth) maps that will reflect in gaining similar results as the ground truth maps. 
-5. Use the provided MATLAB function for evaluation of the results and submit the output to the provided Excel table. The function *evaluateReconstruction.p* called as:
+1. Download the zip file with Elastix software version 5.0.1 for Windows x64 from [here](https://github.com/SuperElastix/elastix/releases).
+2. Extract all files from zip file into the created subfolder **elastix** in main folder **Lecture5**.
+3. Download the data in a zip file from [here](https://www.vut.cz/www_base/vutdisk.php?i=286020a49b). Extract the content of the zip folder into **Lecture5** folder. It contains three mat files (*dataX.mat*), each containing *fixed* (reference) and *moving* image. In the first task we will be working with *data1.mat* only.
+4. Elastix needs the input in the *mhd/raw* files.
+7. Compute a depth maps from obtained disparity maps and available calibration parameters.
+8. Design an automatic algorithm for depth maps computation (depth will be in mm). Try to design also a pipeline for post-processing of disparity (depth) maps that will reflect in gaining similar results as the ground truth maps. 
+9. Use the provided MATLAB function for evaluation of the results and submit the output to the provided Excel table. The function *evaluateReconstruction.p* called as:
 `[MAE,percantageMissing,details] = evaluateReconstruction(depthMaps)`,
 has the following inputs and outputs:
   * depthMaps (cell array 1xNumber of scenes, where each cell contains matrix sized as image containing depth values in mm, missing pixels should have value equal to zero); the order of scenes has to be preserved,
