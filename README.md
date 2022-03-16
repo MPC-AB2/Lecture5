@@ -9,16 +9,17 @@
 5. Clone the **Lecture5** repository from GitHub by: `$ git clone https://github.com/MPC-AB2/Lecture5.git`
 6. In the MAIN folder should be new folder **Lecture5**.
 7. In the **Lecture5** folder create subfolder **NAME_OF_YOUR_TEAM**.
-8. Run Git bash in **Lecture5** folder (should be *main* branch active).
-9. Create a new branch for your team by: `$ git checkout -b NAME_OF_YOUR_TEAM`
-10. Check that  *NAME_OF_YOUR_TEAM* branch is active.
-11. Continue to the task...
+8. Copy folder ***parameter_files_stud** into **NAME_OF_YOUR_TEAM** subfolder.
+9. Run Git bash in **Lecture5** folder (should be *main* branch active).
+10. Create a new branch for your team by: `$ git checkout -b NAME_OF_YOUR_TEAM`
+11. Check that  *NAME_OF_YOUR_TEAM* branch is active.
+12. Continue to the task...
 
 ## Tasks to do
 
 ### Task 1 - Elementary script for image registration using Elastix
 1. Download the zip file with Elastix software version 5.0.1 for Windows x64 from [here](https://github.com/SuperElastix/elastix/releases).
-2. Extract all files from zip file into the created subfolder **elastix** in main folder **Lecture5**.
+2. Extract all files from zip file into the created subfolder **elastix** in **NAME_OF_YOUR_TEAM** folder.
 3. Download the data in a zip file from [here](https://www.vut.cz/www_base/vutdisk.php?i=286020a49b). Extract the content of the zip folder into **Lecture5** folder. It contains three mat files (*dataX.mat*), each containing *fixed* (reference) and *moving* image. In the first task we will be working with *data1.mat* only.
 4. Elastix needs the input in the *mhd/raw* files. Create fuction *mat2raw.m* to save variable to *mhd/raw* file:
    * the inputs will be 2D matrix, save-path and file name,
