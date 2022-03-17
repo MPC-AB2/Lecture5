@@ -1,5 +1,7 @@
 # Lecture5 - IMAGE REGISTRATION METHODS (ELASTIX)
 
+[**Benchmark Results**](https://moodle.vut.cz/pluginfile.php/408977/mod_resource/content/1/L5_BenchmarkRegistration.xlsx%20-%20List1.pdf)
+
 ## Preparation
 
 1. Run Git bash.
