@@ -50,15 +50,17 @@ mat2rawMASK(movingMask,path,'movingM')
 % run ELASTIX
 
 
-CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  ...
-    'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'...
-     ' -fMask ' path '\fixedM.mhd -mMask ' path '\movingM.mhd' ];
-% CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
+% CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  ...
+%     'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'...
+%      ' -fMask ' path '\fixedM.mhd -mMask ' path '\movingM.mhd' ];
+CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
 
 status = system(CMD);
 
 moving2 = raw2mat([path '\result.0.mhd']);
+
 mat2raw(moving2,path,'moving2')
+
 
 CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving2.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
 
@@ -69,6 +71,8 @@ CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving2.mhd -out ' pat
 
 % CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
 status = system(CMD);
+
+
 
 
 % read resulting RAW a save to variable - registered
