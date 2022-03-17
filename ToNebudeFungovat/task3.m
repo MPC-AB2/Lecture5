@@ -18,7 +18,7 @@ title('Fixed')
 subplot(1,3,2)
 imshow(moving,[])
 title('Moving')
-
+ 
 
 [~,help] = system('elastix\elastix.exe --help')
 
@@ -41,7 +41,7 @@ mat2raw(moving,path,'moving')
 
 
 % tvorka masky
-movingMask = moving>0;
+movingMask = moving > 0;%(moving>95)&(moving<130);
 fixedMask = fixed>0;
 
 mat2rawMASK(fixedMask,path,'fixedM')
@@ -52,16 +52,24 @@ mat2rawMASK(movingMask,path,'movingM')
 
 CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  ...
     'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'...
-     ' - fMask ' path '\fixedM.mhd - mMask ' path '\movingM.mhd' ];
-status = system(CMD)
+     ' -fMask ' path '\fixedM.mhd -mMask ' path '\movingM.mhd' ];
+% CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
+
+status = system(CMD);
+
+moving2 = raw2mat([path '\result.0.mhd']);
+mat2raw(moving2,path,'moving2')
+
+CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving2.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
+
+% CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving2.mhd -out ' path ' -p '  ...
+%     'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_BSpline.txt'...
+%      ' -fMask ' path '\fixedM.mhd -mMask ' path '\movingM.mhd' ];
 
 
-% CMD = ['elastix\transformix -in ' path '\moving.mhd -out ' path ' -tp ' path  '\TransformParameters.0.txt'];
-% status = system(CMD)
-% transformix -in inputImg.ext -out outputDir -tp TransformParams.txt
-% 
-% CMD = ['elastix\transformix -def all -in ' path '\moving.mhd -out ' path ' -tp ' path  '\TransformParameters.0.txt'];
-% status = system(CMD)  % -deff all - uloži všechny parametry do proměnné deformation field 
+% CMD = ['elastix\elastix -f ' path '\fixed.mhd -m ' path '\moving.mhd -out ' path ' -p '  'C:\Users\xsando01\Documents\AB2\Lecture5\ToNebudeFungovat\parameter_files_stud_1\Parameters_Affine.txt'];
+status = system(CMD);
+
 
 % read resulting RAW a save to variable - registered
 
