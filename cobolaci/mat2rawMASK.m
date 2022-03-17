@@ -38,7 +38,7 @@ fclose(fileID);
 
 im = im2double(im);
 im = uint16(im.*2.^15);
-im = permute(im,[2 1 3]); %prehodenie dimenzii
+im = permute(im,[2 1]); %prehodenie dimenzii
 
 fileID = fopen([path c name '.raw'],'w+');
 fwrite(fileID,im(:),'uint16');

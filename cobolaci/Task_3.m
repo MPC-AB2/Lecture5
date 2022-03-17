@@ -12,7 +12,7 @@ end
 
 mkdir(tempFile);
 
-load data1.mat
+load data3.mat
 
 figure
 subplot(1,3,1)
@@ -36,17 +36,23 @@ mat2raw(fixed,tempFile,'fixed')
 mat2raw(moving,tempFile,'moving')
 
 
-% create mask
-movingMask = moving>0;
-fixedMask = fixed>0;
-mat2rawMASK(fixed,tempFile,'fixedm')
-mat2rawMASK(moving,tempFile,'movingm')
+% create mask,
+movingMask = moving>90;
+fixedMask = fixed>90;
+mat2rawMASK(fixedMask,tempFile,'fixedm')
+mat2rawMASK(movingMask,tempFile,'movingm')
 
 NewPath = [pwd filesep tempFile filesep];
 ParPath = [pwd filesep 'parameter_files_cobolaci' filesep];
-CMD = ['elastix\elastix -f ' NewPath 'fixed.mhd -m ' NewPath 'moving.mhd -out ' NewPath ' -p '  ParPath 'Parameters_Affine.txt -fmas ' NewPath 'fixedM.mhd -mMask ' NewPath 'movingM.mhd'];
+% 
+% elastix -f FixedImage_i.mhd -m MovingImage_j.mhd -p Rigid-TransforTotal -out outputdir
+% elastix -f FixedImage_i.mhd -m MovingImage_j.mhd -p Rigid-TransforROI -t0 resultsfromabove -fmask selectedroiregion -out outputdir
+
+
+CMD = ['elastix\elastix -f ' NewPath 'moving.mhd -m ' NewPath 'fixed.mhd -out ' NewPath ' -p '  ParPath 'Par0054_sstvd.txt'];
+
 status = system(CMD)
- registered = raw2mat([NewPath 'result.0.mhd']);
+ registered = raw2mat([NewPath 'result.0.R1.mhd']);
  
  registered(registered>(35000)) =0;
  
@@ -61,3 +67,8 @@ subplot(1,2,1)
 imshowpair(fixed,moving)
 subplot(1,2,2)
 imshowpair(fixed,registered)
+
+
+%% evaulation
+registered1 = uint8(im2double(registered).*2^8);
+[evalLung, evalOther] = Eval_Lung2D(registered1)

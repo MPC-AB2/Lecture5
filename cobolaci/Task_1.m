@@ -12,7 +12,7 @@ end
 
 mkdir(tempFile);
 
-load data1.mat
+load data3.mat
 
 figure
 subplot(1,3,1)
@@ -41,7 +41,7 @@ mat2raw(moving,tempFile,'moving')
 
 NewPath = [pwd filesep tempFile filesep];
 ParPath = [pwd filesep 'parameter_files_cobolaci' filesep];
-CMD = ['elastix\elastix -f ' NewPath 'fixed.mhd -m ' NewPath 'moving.mhd -out ' NewPath ' -p '  ParPath 'Parameters_Rigid.txt'];
+CMD = ['elastix\elastix -f ' NewPath 'fixed.mhd -m ' NewPath 'moving.mhd -out ' NewPath ' -p '  ParPath 'Parameters_Affine.txt'];
 status = system(CMD)
 CMD = ['elastix\elastix -in ' NewPath 'moving.mhd -m ' NewPath 'moving.mhd -tp ' NewPath ' -tp '  ParPath 'TransformParameters.0.txt'];
 status = system(CMD)
